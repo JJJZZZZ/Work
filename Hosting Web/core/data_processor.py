@@ -21,6 +21,8 @@ class DataProcessor:
         if isinstance(obj, (np.integer, np.int64, np.int32)):
             return int(obj)
         elif isinstance(obj, (np.floating, np.float64, np.float32)):
+            if np.isinf(obj) or np.isnan(obj):
+                return None  # Or str(obj) if "Infinity" or "NaN" strings are preferred
             return float(obj)
         elif isinstance(obj, np.ndarray):
             return obj.tolist()
@@ -278,43 +280,80 @@ class DataProcessor:
         
         return numeric_columns, string_columns
     
-    def get_data_summary(self, df: pd.DataFrame) -> Dict:
+    def get_data_summary(self, df: pd.DataFrame,
+                         sample_large_datasets: bool = True,
+                         sample_size: int = 1000) -> Dict:
         """
-        Get comprehensive data summary
+        Get comprehensive data summary, with an option to sample large datasets.
         
         Args:
             df: Input dataframe
+            sample_large_datasets: If True, sample df if rows > sample_size.
+            sample_size: Number of rows to sample if df is large.
             
         Returns:
             Dictionary with data summary statistics (JSON serializable)
         """
         print(f"DEBUG: get_data_summary started for dataframe shape: {df.shape}")
         
-        numeric_cols, string_cols = self.get_column_types(df)
-        print(f"DEBUG: Column types identified - numeric: {len(numeric_cols)}, string: {len(string_cols)}")
+        # df_display will be the DataFrame used for generating most of the summary statistics.
+        # It can be the original DataFrame or a sample of it.
+        df_display = df
+        summary_notes = [] # To store any notes regarding the summary, e.g., if it's sampled.
+
+        # Sampling logic:
+        # If sample_large_datasets is True and the DataFrame has more rows than sample_size,
+        # a random sample of the DataFrame is taken for display and summary calculation.
+        # This improves performance for very large datasets.
+        if sample_large_datasets and len(df) > sample_size:
+            print(f"DEBUG: DataFrame is large (rows: {len(df)} > sample_size: {sample_size}). Sampling...")
+            # Take a random sample. random_state is used for reproducibility.
+            df_display = df.sample(n=sample_size, random_state=42)
+            summary_notes.append(f"Statistics based on a sample of {sample_size} rows from the original {len(df)} rows.")
+            print(f"DEBUG: Sampled DataFrame shape: {df_display.shape}")
+        else:
+            # If not sampling, df_display remains the original DataFrame.
+            print(f"DEBUG: Using full DataFrame for summary (rows: {len(df)}).")
+
+        # All subsequent calculations for the summary should use df_display.
+        # Retrieve column types from df_display.
+        numeric_cols, string_cols = self.get_column_types(df_display)
+        print(f"DEBUG: Column types identified (from df_display) - numeric: {len(numeric_cols)}, string: {len(string_cols)}")
         
-        # Create summary with proper type conversion
+        # Create summary with proper type conversion.
         print(f"DEBUG: Creating basic summary...")
         summary = {
-            'shape': [int(df.shape[0]), int(df.shape[1])],  # Convert to native int
-            'columns': df.columns.tolist(),
-            'numeric_columns': numeric_cols,
-            'string_columns': string_cols,
-            'missing_values': {col: int(df[col].isnull().sum()) for col in df.columns},  # Convert to int
-            'missing_percentages': {col: float(round(df[col].isnull().mean() * 100, 2)) for col in df.columns},  # Convert to float
-            'data_types': {col: str(df[col].dtype) for col in df.columns},  # Convert to string
-            'memory_usage': int(df.memory_usage(deep=True).sum()),  # Convert to int
-            'duplicated_rows': int(df.duplicated().sum())  # Convert to int
+            'shape': [int(df.shape[0]), int(df.shape[1])],  # Store the original shape of the input DataFrame.
+            'display_shape': [int(df_display.shape[0]), int(df_display.shape[1])], # Shape of data used for generating stats (could be sampled).
+            'columns': df_display.columns.tolist(), # Columns from df_display.
+            'numeric_columns': numeric_cols, # Numeric columns from df_display.
+            'string_columns': string_cols,   # String columns from df_display.
+            # Missing values calculated on df_display.
+            'missing_values': {col: int(df_display[col].isnull().sum()) for col in df_display.columns},
+            'missing_percentages': {
+                col: None if pd.isna(df_display[col].isnull().mean()) else float(round(df_display[col].isnull().mean() * 100, 2))
+                for col in df_display.columns
+            },
+            'data_types': {col: str(df_display[col].dtype) for col in df_display.columns}, # Data types from df_display.
+            # Memory usage of the DataFrame used for display/summary.
+            'memory_usage_display': int(df_display.memory_usage(deep=True).sum()),
+            # Duplicated rows count in the DataFrame used for display/summary.
+            'duplicated_rows_display': int(df_display.duplicated().sum())
         }
+        # If any notes were added (e.g., about sampling), include them in the summary.
+        if summary_notes:
+            summary['notes'] = summary_notes
+
         print(f"DEBUG: Basic summary created")
         
-        # Add basic statistics for numeric columns
+        # Add descriptive statistics for numeric columns from df_display.
         if numeric_cols:
-            print(f"DEBUG: Computing statistics for {len(numeric_cols)} numeric columns...")
-            desc_stats = df[numeric_cols].describe()
+            print(f"DEBUG: Computing statistics for {len(numeric_cols)} numeric columns (from df_display)...")
+            desc_stats = df_display[numeric_cols].describe() # Calculated on df_display.
             summary['numeric_stats'] = {}
             for col in numeric_cols:
                 summary['numeric_stats'][col] = {
+                    # Ensure stats are JSON serializable and handle NaNs.
                     stat: float(desc_stats.loc[stat, col]) if not pd.isna(desc_stats.loc[stat, col]) else None
                     for stat in desc_stats.index
                 }
