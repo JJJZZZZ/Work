@@ -489,4 +489,4 @@ document.addEventListener('keydown', function(e) {
             nextButton.click();
         }
     }
-}); 
+});

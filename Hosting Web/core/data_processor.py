@@ -325,4 +325,4 @@ class DataProcessor:
         summary = self._convert_to_serializable(summary)
         print(f"DEBUG: Conversion completed, returning summary")
         
-        return summary 
+        return summary

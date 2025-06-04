@@ -210,4 +210,4 @@ For questions or issues:
 
 ---
 
-**Built with**: FastAPI, Pandas, Scikit-learn, Matplotlib, Bootstrap 
+**Built with**: FastAPI, Pandas, Scikit-learn, Matplotlib, Bootstrap

@@ -38,4 +38,4 @@ def test_upload():
         print(f"❌ Error: {e}")
 
 if __name__ == "__main__":
-    test_upload() 
+    test_upload()

@@ -297,4 +297,4 @@ class MatchingVisualizer:
         except Exception as e:
             print(f"Error generating balance plot: {str(e)}")
         
-        return plots 
+        return plots
