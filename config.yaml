@@ -1,0 +1,172 @@
+database:
+  host: "presto-gateway.corp.mongodb.com"
+  port: 443
+  username: "jiawei.zhou@mongodb.com" # Default username, keyring will be checked first
+  catalog: "awsdatacatalog"
+  http_scheme: "https"
+  request_timeout: 600
+  account_score_table: "awsdatacatalog.product_analytics_internal.account_score_enterprise_flywheel"
+  cluster_score_table: "awsdatacatalog.product_analytics_internal.cluster_score_enterprise_flywheel"
+
+paths:
+  model_directory: "./" # Assuming models are in the same directory as the script
+  landing_zone_csv: "Enterprise Flywheel - Account Activity Tracker - List for Analytics.csv"
+
+model_files:
+  core_product_engagement: "core_product_engagement_model.joblib"
+  core_product_trend: "core_product_trend_model.joblib"
+  additional_feature_engagement: "additional_feature_engagement_model.joblib"
+  additional_feature_trend: "additional_feature_trend_model.joblib"
+  demo_score: "demo_score_model.joblib"
+  growth_score: "growth_score_model.joblib"
+
+data_fetching:
+  # Query will be formatted with start_date and model_score_date
+  raw_query_template: |
+    SELECT *
+    FROM awsdatacatalog.ns__analytics_postprocessing.flywheel_db_cluster_daily_metrics
+    WHERE ds BETWEEN DATE '{start_date}' AND DATE '{model_score_date}'
+    AND cluster_mrr > 0 
+    AND data_size_total_gb > 0
+    AND instance_size IS NOT NULL
+    AND cluster_mdb_major_version IS NOT NULL
+    AND instance_size != 'SERVERLESS'
+
+feature_engineering:
+  columns_to_smooth:
+    - "cluster_mrr"
+    - "reads_writes_per_second_avg"
+    - "data_size_total_gb"
+    - "documents_total"
+    - "database_count"
+    - "collection_count"
+    - "total_accesses"
+    - "total_indexes"
+    - "auditlog"
+    - "agg_total_calls"
+    - "agg_set_calls"
+    - "agg_match_calls"
+    - "agg_group_calls"
+    - "agg_project_calls"
+    - "agg_limit_calls"
+    - "agg_sort_calls"
+    - "agg_unwind_calls"
+    - "agg_add_fields_calls"
+    - "agg_lookup_calls"
+    - "agg_count_calls"
+    - "agg_skip_calls"
+    - "cluster_analytics_node_count"
+    - "adminapi_directapi_usage"
+    - "agg_change_stream_calls"
+    - "changestream_events"
+    - "total_hosts_transactions_transactionscollectionwritecount"
+    - "oa_1d_usage_filesize"
+    - "text_indexes"
+    - "text_active_1d_usage"
+    - "ts_collection_count"
+    - "trigger_events"
+    - "vector_indexes"
+    - "vector_active_1d_usage"
+
+model_features:
+  core_engagement:
+    - "smoothed_reads_writes_per_second_avg_percentile_by_instance"
+    - "smoothed_data_size_total_gb_percentile_by_instance"
+    - "smoothed_documents_total_percentile_by_instance"
+    - "smoothed_database_count_percentile_by_instance"
+    - "smoothed_collection_count_percentile_by_instance"
+  core_trend:
+    - "smoothed_reads_writes_per_second_avg_30d_pct_change_percentile_by_instance"
+    - "smoothed_data_size_total_gb_30d_pct_change_percentile_by_instance"
+    - "smoothed_documents_total_30d_pct_change_percentile_by_instance"
+    - "smoothed_database_count_30d_pct_change_percentile_by_instance"
+    - "smoothed_collection_count_30d_pct_change_percentile_by_instance"
+  additional_engagement:
+    - "smoothed_total_accesses_percentile_by_instance"
+    - "smoothed_total_indexes_percentile_by_instance"
+    - "smoothed_agg_total_calls_percentile_by_instance"
+    - "smoothed_agg_set_calls_percentile_by_instance"
+    - "smoothed_agg_match_calls_percentile_by_instance"
+    - "smoothed_agg_group_calls_percentile_by_instance"
+    - "smoothed_agg_project_calls_percentile_by_instance"
+    - "smoothed_agg_limit_calls_percentile_by_instance"
+    - "smoothed_agg_sort_calls_percentile_by_instance"
+    - "smoothed_agg_unwind_calls_percentile_by_instance"
+    - "smoothed_agg_add_fields_calls_percentile_by_instance"
+    - "smoothed_agg_lookup_calls_percentile_by_instance"
+    - "smoothed_agg_count_calls_percentile_by_instance"
+    - "smoothed_agg_skip_calls_percentile_by_instance"
+    - "smoothed_cluster_analytics_node_count_percentile_by_instance"
+    - "smoothed_adminapi_directapi_usage_percentile_by_instance"
+    - "smoothed_agg_change_stream_calls_percentile_by_instance"
+    - "smoothed_changestream_events_percentile_by_instance"
+    - "smoothed_total_hosts_transactions_transactionscollectionwritecount_percentile_by_instance"
+    - "smoothed_oa_1d_usage_filesize_percentile_by_instance"
+    - "smoothed_text_indexes_percentile_by_instance"
+    - "smoothed_text_active_1d_usage_percentile_by_instance"
+    - "smoothed_ts_collection_count_percentile_by_instance"
+    - "smoothed_trigger_events_percentile_by_instance"
+    - "smoothed_vector_indexes_percentile_by_instance"
+    - "smoothed_vector_active_1d_usage_percentile_by_instance"
+    - "smoothed_auditlog_percentile_by_instance"
+  additional_trend:
+    - "smoothed_total_accesses_30d_pct_change_percentile_by_instance"
+    - "smoothed_total_indexes_30d_pct_change_percentile_by_instance"
+    - "smoothed_agg_total_calls_30d_pct_change_percentile_by_instance"
+    - "smoothed_agg_set_calls_30d_pct_change_percentile_by_instance"
+    - "smoothed_agg_match_calls_30d_pct_change_percentile_by_instance"
+    - "smoothed_agg_group_calls_30d_pct_change_percentile_by_instance"
+    - "smoothed_agg_project_calls_30d_pct_change_percentile_by_instance"
+    - "smoothed_agg_limit_calls_30d_pct_change_percentile_by_instance"
+    - "smoothed_agg_sort_calls_30d_pct_change_percentile_by_instance"
+    - "smoothed_agg_unwind_calls_30d_pct_change_percentile_by_instance"
+    - "smoothed_agg_add_fields_calls_30d_pct_change_percentile_by_instance"
+    - "smoothed_agg_lookup_calls_30d_pct_change_percentile_by_instance"
+    - "smoothed_agg_count_calls_30d_pct_change_percentile_by_instance"
+    - "smoothed_agg_skip_calls_30d_pct_change_percentile_by_instance"
+    - "smoothed_cluster_analytics_node_count_30d_pct_change_percentile_by_instance"
+    - "smoothed_adminapi_directapi_usage_30d_pct_change_percentile_by_instance"
+    - "smoothed_agg_change_stream_calls_30d_pct_change_percentile_by_instance"
+    - "smoothed_changestream_events_30d_pct_change_percentile_by_instance"
+    - "smoothed_total_hosts_transactions_transactionscollectionwritecount_30d_pct_change_percentile_by_instance"
+    - "smoothed_oa_1d_usage_filesize_30d_pct_change_percentile_by_instance"
+    - "smoothed_text_indexes_30d_pct_change_percentile_by_instance"
+    - "smoothed_text_active_1d_usage_30d_pct_change_percentile_by_instance"
+    - "smoothed_ts_collection_count_30d_pct_change_percentile_by_instance"
+    - "smoothed_trigger_events_30d_pct_change_percentile_by_instance"
+    - "smoothed_vector_indexes_30d_pct_change_percentile_by_instance"
+    - "smoothed_vector_active_1d_usage_30d_pct_change_percentile_by_instance"
+    - "smoothed_auditlog_30d_pct_change_percentile_by_instance"
+  demo:
+    - "cluster_age_month"
+    - "cluster_mdb_major_version"
+    - "is_backup_selected"
+    - "is_auto_expand_storage"
+    - "is_auto_scaling_compute_enabled"
+    - "is_auto_scaling_compute_scaledown_enabled"
+    - "instance_size_numeric"
+  growth:
+    - "demo_score"
+    - "core_product_engagement_score"
+    - "core_product_trend_score"
+    - "additional_feature_engagement_score"
+    - "additional_feature_trend_score"
+
+landing_zone_config:
+  use_cols: ['Account Name', 'Account ID']
+  column_mapping:
+    'account name': 'account_name'
+    'account id': 'account_id'
+
+database_insertion:
+  batch_size: 100
+
+logging:
+  log_file: "scoring_auto.log"
+  level: "INFO" # e.g., DEBUG, INFO, WARNING, ERROR, CRITICAL
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  script_logger_name: "ScoringScript" # Name for the main script logger
+
+other:
+  keyring_service_name: "trino_db" # Service name for keyring
+  trino_backup_config_path: ".trino_config.json" # Relative to user's home directory
