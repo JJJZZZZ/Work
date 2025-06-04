@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propensity Matching Tool</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="static/style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-chart-line me-2"></i>
+                Propensity Matching Tool
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-4">
+        <!-- Progress Steps -->
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="progress-steps">
+                    <div class="step active" id="step1">
+                        <span class="step-number">1</span>
+                        <span class="step-label">Upload Data</span>
+                    </div>
+                    <div class="step" id="step2">
+                        <span class="step-number">2</span>
+                        <span class="step-label">Configure</span>
+                    </div>
+                    <div class="step" id="step3">
+                        <span class="step-number">3</span>
+                        <span class="step-label">Match</span>
+                    </div>
+                    <div class="step" id="step4">
+                        <span class="step-number">4</span>
+                        <span class="step-label">Results</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 1: Upload Data -->
+        <div class="step-content" id="content-step1">
+            <div class="card">
+                <div class="card-header">
+                    <h4><i class="fas fa-upload me-2"></i>Step 1: Upload Your Data</h4>
+                </div>
+                <div class="card-body">
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-content">
+                            <i class="fas fa-cloud-upload-alt fa-3x text-muted mb-3"></i>
+                            <h5>Drag and drop your CSV file here</h5>
+                            <p class="text-muted">or click to browse</p>
+                            <input type="file" id="fileInput" accept=".csv" class="d-none">
+                        </div>
+                    </div>
+                    
+                    <div id="fileInfo" class="mt-3" style="display: none;">
+                        <div class="alert alert-info">
+                            <strong>File uploaded successfully!</strong>
+                            <div id="dataSummary"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 2: Configure Matching -->
+        <div class="step-content" id="content-step2" style="display: none;">
+            <div class="card">
+                <div class="card-header">
+                    <h4><i class="fas fa-cog me-2"></i>Step 2: Configure Matching Parameters</h4>
+                </div>
+                <div class="card-body">
+                    <form id="configForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="primaryIdentifier" class="form-label">Primary Identifier Column</label>
+                                    <select class="form-select" id="primaryIdentifier" required>
+                                        <option value="">Select column...</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="treatmentFlag" class="form-label">Treatment Flag Column</label>
+                                    <select class="form-select" id="treatmentFlag" required>
+                                        <option value="">Select column...</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="dsMonth" class="form-label">Date/Month Column</label>
+                                    <select class="form-select" id="dsMonth" required>
+                                        <option value="">Select column...</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="columnsForMatching" class="form-label">Columns for Matching</label>
+                                    <div class="matching-columns" id="matchingColumns">
+                                        <!-- Dynamic checkboxes will be added here -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="handleMissing" class="form-label">Handle Missing Values</label>
+                                    <select class="form-select" id="handleMissing">
+                                        <option value="drop">Drop rows with missing values</option>
+                                        <option value="fill_mean">Fill with mean</option>
+                                        <option value="fill_median">Fill with median</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label for="matchingStrictness" class="form-label">Matching Strictness (Caliper)</label>
+                                    <input type="number" class="form-control" id="matchingStrictness" value="0.1" step="0.01" min="0" max="1">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <div class="form-check mt-4">
+                                        <input class="form-check-input" type="checkbox" id="standardizeNumeric" checked>
+                                        <label class="form-check-label" for="standardizeNumeric">
+                                            Standardize numeric variables
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="withReplacement">
+                                        <label class="form-check-label" for="withReplacement">
+                                            With replacement
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-check me-2"></i>Configure Matching
+                        </button>
+                    </form>
+
+                    <div id="configResults" class="mt-3" style="display: none;">
+                        <!-- Configuration results will be displayed here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 3: Run Matching -->
+        <div class="step-content" id="content-step3" style="display: none;">
+            <div class="card">
+                <div class="card-header">
+                    <h4><i class="fas fa-play me-2"></i>Step 3: Run Propensity Score Matching</h4>
+                </div>
+                <div class="card-body text-center">
+                    <div id="matchingControls">
+                        <p>Ready to run propensity score matching with your configured parameters.</p>
+                        <button type="button" class="btn btn-success btn-lg" id="runMatchingBtn">
+                            <i class="fas fa-play me-2"></i>Run Matching
+                        </button>
+                    </div>
+
+                    <div id="matchingProgress" style="display: none;">
+                        <div class="d-flex justify-content-center mb-3">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
+                        </div>
+                        <p>Running propensity score matching... This may take a few moments.</p>
+                    </div>
+
+                    <div id="matchingComplete" style="display: none;">
+                        <div class="alert alert-success">
+                            <h5><i class="fas fa-check-circle me-2"></i>Matching Complete!</h5>
+                            <div id="matchingResults"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Step 4: Results and Download -->
+        <div class="step-content" id="content-step4" style="display: none;">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-download me-2"></i>Download Results</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>Your matched pairs are ready for download.</p>
+                            <button type="button" class="btn btn-primary" id="downloadBtn">
+                                <i class="fas fa-download me-2"></i>Download CSV
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4><i class="fas fa-chart-bar me-2"></i>Visualizations</h4>
+                        </div>
+                        <div class="card-body">
+                            <p>View before/after matching distributions.</p>
+                            <button type="button" class="btn btn-info" id="showVisualizationsBtn">
+                                <i class="fas fa-chart-line me-2"></i>Show Plots
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="visualizations" class="mt-4" style="display: none;">
+                <div class="card">
+                    <div class="card-header">
+                        <h4><i class="fas fa-chart-line me-2"></i>Before vs After Matching</h4>
+                    </div>
+                    <div class="card-body">
+                        <div id="plotsContainer">
+                            <!-- Plots will be loaded here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Modal -->
+    <div class="modal fade" id="loadingModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <div class="spinner-border text-primary mb-3" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p id="loadingMessage">Processing...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="static/script.js"></script>
+</body>
+</html> 
