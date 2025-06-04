@@ -90,6 +90,20 @@ async function processFile(file) {
 
         if (result.success) {
             uploadedData = result.summary;
+
+            // --- Sampling Notification Logic ---
+            // The backend might send a 'notes' field in the summary if the data was sampled
+            // (e.g., for very large files to speed up initial processing).
+            // This checks for such notes and informs the user.
+            if (result.summary && result.summary.notes && result.summary.notes.length > 0) {
+                // If notes exist (e.g., ["Statistics based on a sample of 1000 rows."]),
+                // display them as an informational alert.
+                // The alert type 'info' is suitable for non-critical information.
+                const notesMessage = Array.isArray(result.summary.notes) ? result.summary.notes.join(' ') : result.summary.notes;
+                showAlert(`Note: ${notesMessage}`, 'info');
+            }
+            // --- End of Sampling Notification Logic ---
+
             displayDataSummary(result.summary);
             populateColumnSelectors(result.summary);
             moveToStep(2);

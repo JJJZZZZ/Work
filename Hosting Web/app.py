@@ -106,12 +106,51 @@ async def upload_data(file: UploadFile = File(...)):
     try:
         print(f"DEBUG: Starting file upload for {file.filename}")
         
-        # Read the uploaded file
-        contents = await file.read()
-        print(f"DEBUG: File read successfully, size: {len(contents)} bytes")
-        
-        df = pd.read_csv(io.StringIO(contents.decode('utf-8')))
-        print(f"DEBUG: CSV parsed successfully, shape: {df.shape}")
+        # Read the uploaded file in chunks to handle large files efficiently.
+        # Define an appropriate chunk size (e.g., 10,000 rows per chunk).
+        # This value can be adjusted based on typical file sizes and server memory.
+        chunk_size = 10000
+        df_chunks = [] # List to store processed chunks.
+
+        # Attempt to read the CSV in chunks directly from the file stream.
+        # file.file provides access to the underlying SpooledTemporaryFile from UploadFile.
+        try:
+            # Use pd.read_csv with chunksize to create an iterator.
+            with pd.read_csv(file.file, chunksize=chunk_size, encoding='utf-8') as reader:
+                for chunk in reader:
+                    # Append each chunk (DataFrame) to the list.
+                    df_chunks.append(chunk)
+                    print(f"DEBUG: Read chunk with shape {chunk.shape}")
+        except Exception as e:
+            # Fallback mechanism: If chunked reading fails (e.g., encoding issues, not a CSV),
+            # reset the file pointer, read the entire content, and try parsing again.
+            # This is less memory-efficient for very large files but provides robustness.
+            print(f"DEBUG: Initial chunked reading failed: {str(e)}. Attempting fallback.")
+            await file.seek(0) # Reset file pointer to the beginning of the file.
+            contents = await file.read() # Read the entire file content.
+            try:
+                # Decode the byte string to a string and then parse with pandas.
+                df = pd.read_csv(io.StringIO(contents.decode('utf-8')))
+                print(f"DEBUG: CSV parsed successfully via fallback, shape: {df.shape}")
+            except Exception as fallback_e:
+                # If fallback parsing also fails, raise an HTTPException.
+                print(f"DEBUG: Fallback CSV parsing also failed: {str(fallback_e)}")
+                raise HTTPException(status_code=400, detail=f"Error processing CSV file content: {str(fallback_e)}")
+
+        # After attempting to read chunks (and potentially falling back):
+        if not df_chunks:
+            # If df_chunks is empty, it means the fallback was used.
+            # We need to ensure 'df' was actually created in the fallback.
+            if 'df' not in locals():
+                 raise HTTPException(status_code=400, detail="Failed to read or parse CSV data after fallback.")
+        else:
+            # If df_chunks is not empty, chunked reading was successful.
+            # Concatenate all collected DataFrame chunks into a single DataFrame.
+            df = pd.concat(df_chunks, ignore_index=True)
+            print(f"DEBUG: All chunks concatenated, final DataFrame shape: {df.shape}")
+
+        # Ensure df is available at this point, either from chunking or fallback.
+        print(f"DEBUG: CSV parsed successfully, final shape: {df.shape}")
         
         # Store data in app state
         app.state.data_store['original_data'] = df
@@ -135,7 +174,9 @@ async def upload_data(file: UploadFile = File(...)):
         print(f"DEBUG: Upload error: {str(e)}")
         import traceback
         traceback.print_exc()
-        raise HTTPException(status_code=400, detail=f"Error processing file: {str(e)}")
+        # If the exception is already an HTTPException, use its detail. Otherwise, convert to string.
+        detail_message = e.detail if isinstance(e, HTTPException) else str(e)
+        raise HTTPException(status_code=400, detail=f"Error processing file: {detail_message}")
 
 @app.post("/configure-matching")
 async def configure_matching(
