@@ -1,0 +1,17 @@
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+pandas>=2.1.0
+numpy>=1.24.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+scikit-learn>=1.3.0
+scipy>=1.10.0
+jinja2>=3.1.0
+
+# Optional: MongoDB packages (if available)
+# mongodstools
+# mongocausalml
+
+# Development dependencies
+python-dotenv>=1.0.0 
