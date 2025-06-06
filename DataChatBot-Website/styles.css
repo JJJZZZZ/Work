@@ -1,16 +1,16 @@
 /* Apple Style CSS */
 :root {
-    --apple-white: #ffffff;
-    --apple-black: #1d1d1f;
-    --apple-gray: #86868b;
-    --mongodb-green: #4DB33D; /* MongoDB primary green */
-    --mongodb-green-light: #6ACC5A; /* Lighter MongoDB green accent */
-    --mongodb-green-dark: #3FA037; /* Darker MongoDB green for gradients/accents */
-    --brand-blue: #0071e3; /* Adding a blue for alternating colors */
-    --mongodb-gradient-start: #003E29; /* Dark green for gradient */
-    --mongodb-gradient-end: #00684A;   /* Medium green for gradient */
+    --apple-white: #FFDDE0; /* Light Red */
+    --apple-black: #4A4A4A; /* Dark Gray */
+    --apple-gray: #757575; /* Medium Gray */
+    --mongodb-green: #008080; /* Teal */
+    --mongodb-green-light: #40A0A0; /* Lighter Teal */
+    --mongodb-green-dark: #006060; /* Darker Teal */
+    --brand-blue: #FF7F50; /* Coral */
+    --mongodb-gradient-start: #006060; /* Darker Teal */
+    --mongodb-gradient-end: #008080;   /* Teal */
     --apple-dark-bg: #000000;
-    --apple-section-gray: #f5f5f7;
+    --apple-section-gray: #FFDDE0; /* Light Red */
 }
 
 * {
@@ -100,7 +100,7 @@ h1, h2, h3, h4, h5, h6 {
 .hero {
     height: 100vh;
     background: linear-gradient(135deg, var(--mongodb-gradient-start) 0%, var(--mongodb-gradient-end) 100%);
-    color: var(--apple-white);
+    color: #FFFFFF; /* Changed from var(--apple-white) */
     display: flex;
     flex-direction: column;
     position: relative;
@@ -242,7 +242,7 @@ h1, h2, h3, h4, h5, h6 {
 .mouse {
     width: 30px;
     height: 50px;
-    border: 2px solid var(--apple-white);
+    border: 2px solid #FFFFFF; /* Changed from var(--apple-white) */
     border-radius: 20px;
     position: relative;
     margin: 0 auto 10px;
@@ -253,7 +253,7 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     width: 6px;
     height: 6px;
-    background: var(--apple-white);
+    background: #FFFFFF; /* Changed from var(--apple-white) */
     border-radius: 50%;
     left: 50%;
     transform: translateX(-50%);
@@ -305,7 +305,7 @@ h1, h2, h3, h4, h5, h6 {
 .problem-text-content .section-text {
     font-size: 18px;
     line-height: 1.7;
-    color: #5a6570;
+    color: var(--apple-gray); /* Changed from #5a6570 */
     margin-bottom: 1.25em;
     max-width: 100%;
     font-weight: 400;
@@ -349,7 +349,7 @@ h1, h2, h3, h4, h5, h6 {
 .solution-text-content .section-text {
     font-size: 18px; /* Consistent with Problem section text */
     line-height: 1.7; /* Consistent line height */
-    color: #5a6570; /* Consistent text color */
+    color: var(--apple-gray); /* Changed from #5a6570 */
     margin-bottom: 1.25em; /* Spacing between paragraphs */
     max-width: 100%; /* Ensure text fills its column */
 }
@@ -405,7 +405,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 500px;
     height: 500px;
     border-radius: 50%;
-    background: radial-gradient(circle at center, rgba(0, 113, 227, 0.05) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(0, 128, 128, 0.05) 0%, transparent 70%); /* Teal accent */
     z-index: 1;
 }
 
@@ -502,7 +502,7 @@ h1, h2, h3, h4, h5, h6 {
     /* @media (min-width: 992px) { */
     /*    grid-column: span 2; /* This would require features-grid to be set to allow this */
     /* } */
-    background-color: #fdfdfd; /* Slightly different background if needed */
+    background-color: #F0F0F0; /* Slightly different background if needed - Changed from #fdfdfd */
 }
 
 .feature-expanded h3 {
@@ -532,7 +532,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 500px;
     height: 500px;
     border-radius: 50%;
-    background: radial-gradient(circle at center, rgba(52, 199, 89, 0.05) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(0, 128, 128, 0.05) 0%, transparent 70%); /* Teal accent */
 }
 
 .team-members {
@@ -548,11 +548,11 @@ h1, h2, h3, h4, h5, h6 {
     padding: 30px;
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     position: relative;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.8); /* Kept as specific white */
     border-radius: 16px;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.5); /* Kept as specific white */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
@@ -562,7 +562,7 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: 50%;
     overflow: hidden;
     margin: 0 auto 15px;
-    border: 3px solid #fff;
+    border: 3px solid #FFFFFF; /* Changed from #fff */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.4s ease;
     transform: translateY(0);
@@ -571,7 +571,7 @@ h1, h2, h3, h4, h5, h6 {
 .team-member:hover .profile-pic {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    border-color: rgba(52, 199, 89, 0.7);
+    border-color: rgba(0, 128, 128, 0.7); /* Teal accent */
 }
 
 .profile-pic img {
@@ -593,7 +593,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0)); /* Kept as specific white */
     border-radius: 16px;
     z-index: -1;
 }
@@ -618,7 +618,7 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateX(-50%);
     width: 40px;
     height: 2px;
-    background: var(--apple-green);
+    background: var(--mongodb-green); /* Was --apple-green, now Teal */
     border-radius: 2px;
     transition: width 0.3s ease;
 }
@@ -630,7 +630,7 @@ h1, h2, h3, h4, h5, h6 {
 /* CTA Section */
 .cta {
     background: linear-gradient(135deg, var(--mongodb-gradient-start) 0%, var(--mongodb-gradient-end) 100%);
-    color: var(--apple-white);
+    color: #FFFFFF; /* Changed from var(--apple-white) */
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -661,7 +661,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .cta .section-text {
-    color: var(--apple-white);
+    color: #FFFFFF; /* Changed from var(--apple-white) */
     opacity: 0.9;
     margin: 0 auto 50px;
     font-size: 24px;
@@ -673,7 +673,7 @@ h1, h2, h3, h4, h5, h6 {
     display: inline-block;
     padding: 18px 40px;
     background: var(--mongodb-green);
-    color: var(--apple-white);
+    color: #FFFFFF; /* Changed from var(--apple-white) */
     text-decoration: none;
     font-size: 20px;
     font-weight: 600;
@@ -682,7 +682,7 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     overflow: hidden;
     z-index: 1;
-    box-shadow: 0 10px 30px rgba(0, 113, 227, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 128, 128, 0.3); /* Teal accent shadow */
 }
 
 .cta-button::after {
@@ -699,9 +699,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .cta-button:hover {
-    background-color: #2b82d4;
+    background-color: #E57348; /* Darker Coral - Changed from #2b82d4 */
     transform: scale(1.05);
-    box-shadow: 0 15px 40px rgba(0, 113, 227, 0.4);
+    box-shadow: 0 15px 40px rgba(255, 127, 80, 0.4); /* Adjusted shadow to coral */
 }
 
 .cta-button:hover::after {
@@ -861,7 +861,7 @@ footer p {
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background: var(--apple-green); /* Use existing green */
+    background: var(--mongodb-green); /* Was --apple-green, now Teal */
     border-radius: 3px;
 }
 
@@ -885,7 +885,7 @@ footer p {
 
 .chat-header-chat {
     background-color: var(--mongodb-green); /* Use existing blue */
-    color: var(--apple-white);
+    color: #FFFFFF; /* Changed from var(--apple-white) */
     padding: 12px 20px;
     font-weight: 500;
     text-align: center;
@@ -898,7 +898,7 @@ footer p {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    background-color: #f9f9f9; /* Very light gray for message area */
+    background-color: #F0F0F0; /* Very light gray for message area - Changed from #f9f9f9 */
     overflow-y: auto;
 }
 
@@ -957,7 +957,7 @@ footer p {
 
 .chat-input-chat input:focus {
     border-color: var(--mongodb-green);
-    box-shadow: 0 0 0 2px rgba(0, 113, 227, 0.2);
+    box-shadow: 0 0 0 2px rgba(255, 127, 80, 0.2); /* Coral accent shadow */
 }
 
 .chat-input-chat button {
@@ -974,7 +974,7 @@ footer p {
     transition: background-color 0.2s;
 }
 .chat-input-chat button:hover {
-    background-color: #2a9d47; /* Darker green on hover */
+    background-color: var(--mongodb-green-dark); /* Darker Teal - Changed from #2a9d47 */
 }
 
 /* Responsive adjustments for chat */
@@ -1015,7 +1015,7 @@ footer p {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(0, 113, 227, 0.03) 0%, rgba(52, 199, 89, 0.03) 100%);
+    background: linear-gradient(135deg, rgba(255, 127, 80, 0.03) 0%, rgba(0, 128, 128, 0.03) 100%); /* Coral and Teal */
     opacity: 0.5; /* Adjust opacity as needed */
     z-index: 0;
 }
@@ -1147,7 +1147,7 @@ footer p {
 }
 
 .how-it-works-column h3 .highlight-blue {
-    color: var(--mongodb-green); /* Using main MongoDB green */
+    color: var(--brand-blue); /* Using Coral, was var(--mongodb-green) */
 }
 
 .how-it-works-column p {
@@ -1187,7 +1187,7 @@ footer p {
     max-width: 800px; /* Constrain width for readability */
     font-size: 18px; /* Consistent with Problem/Solution section text */
     line-height: 1.7; /* Consistent line height */
-    color: #5a6570; /* Consistent text color */
+    color: var(--apple-gray); /* Changed from #5a6570 */
     margin-left: 0; /* Ensure left alignment */
     margin-right: 0; /* Ensure left alignment */
 }
