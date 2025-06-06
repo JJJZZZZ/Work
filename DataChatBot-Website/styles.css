@@ -1,16 +1,30 @@
 /* Apple Style CSS */
 :root {
-    --apple-white: #FFDDE0; /* Light Red */
-    --apple-black: #4A4A4A; /* Dark Gray */
-    --apple-gray: #757575; /* Medium Gray */
-    --mongodb-green: #008080; /* Teal */
-    --mongodb-green-light: #40A0A0; /* Lighter Teal */
-    --mongodb-green-dark: #006060; /* Darker Teal */
-    --brand-blue: #FF7F50; /* Coral */
-    --mongodb-gradient-start: #006060; /* Darker Teal */
-    --mongodb-gradient-end: #008080;   /* Teal */
+    --brand-light-blue: #ADD8E6; /* Light Blue */
+    --brand-light-blue-dark: #87CEEB; /* Sky Blue */
+    --brand-light-blue-medium: #B0E0E6; /* Powder Blue */
+    --brand-light-blue-light: #F0F8FF; /* Alice Blue */
+
+    --apple-white: #FFFFFF; /* Changed from Light Red to White */
+    --apple-black: #333333; /* Dark Gray - slightly adjusted for modern feel */
+    --apple-gray: #666666; /* Medium Gray - slightly adjusted for modern feel */
+
+    /* Primary colors replaced with light blue theme */
+    --mongodb-green: var(--brand-light-blue); /* Was #008080 (Teal) */
+    --mongodb-green-light: var(--brand-light-blue-medium); /* Was #40A0A0 (Lighter Teal) */
+    --mongodb-green-dark: var(--brand-light-blue-dark); /* Was #006060 (Darker Teal) */
+    --brand-blue: var(--brand-light-blue); /* Was #FF7F50 (Coral) */
+
+    /* Gradients adjusted to light blue theme */
+    --mongodb-gradient-start: var(--brand-light-blue-dark); /* Was #006060 */
+    --mongodb-gradient-end: var(--brand-light-blue);   /* Was #008080 */
+
     --apple-dark-bg: #000000;
-    --apple-section-gray: #FFDDE0; /* Light Red */
+    --apple-section-gray: #F0F0F0; /* Changed from Light Red to Neutral Light Gray */
+
+    /* Text colors - ensure contrast */
+    --text-on-light-blue: #000000; /* Black text on light blue backgrounds for readability */
+    --text-on-dark-blue: #FFFFFF; /* White text on darker blue backgrounds */
 }
 
 * {
@@ -67,7 +81,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     width: 80px;
     height: 3px;
-    background: var(--mongodb-green);
+    background: var(--mongodb-green); /* Will become light blue */
     border-radius: 3px;
 }
 
@@ -99,8 +113,8 @@ h1, h2, h3, h4, h5, h6 {
 /* Hero Section */
 .hero {
     height: 100vh;
-    background: linear-gradient(135deg, var(--mongodb-gradient-start) 0%, var(--mongodb-gradient-end) 100%);
-    color: #FFFFFF; /* Changed from var(--apple-white) */
+    background: linear-gradient(135deg, var(--mongodb-gradient-start) 0%, var(--mongodb-gradient-end) 100%); /* Will be light blue gradient */
+    color: var(--text-on-dark-blue); /* Ensuring contrast */
     display: flex;
     flex-direction: column;
     position: relative;
@@ -133,7 +147,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(173, 216, 230, 0.1) 0%, transparent 70%); /* Subtle light blue */
     z-index: 1;
     animation: float 15s infinite ease-in-out;
 }
@@ -253,7 +267,7 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     width: 6px;
     height: 6px;
-    background: #FFFFFF; /* Changed from var(--apple-white) */
+    background: var(--text-on-dark-blue); /* Ensuring contrast */
     border-radius: 50%;
     left: 50%;
     transform: translateX(-50%);
@@ -286,7 +300,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     width: 100%;
     height: 200px;
-    background: linear-gradient(to bottom, transparent, var(--apple-section-gray));
+    background: linear-gradient(to bottom, transparent, var(--apple-section-gray)); /* Will be neutral light gray */
     z-index: 1;
 }
 
@@ -364,7 +378,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Ensure highlight-green is defined if not already, or adjust as needed */
 .highlight-green {
-    color: var(--mongodb-green);
+    color: var(--mongodb-green); /* Will become light blue */
     font-weight: 600; /* Or adjust as preferred */
 }
 
@@ -405,7 +419,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 500px;
     height: 500px;
     border-radius: 50%;
-    background: radial-gradient(circle at center, rgba(0, 128, 128, 0.05) 0%, transparent 70%); /* Teal accent */
+    background: radial-gradient(circle at center, rgba(173, 216, 230, 0.05) 0%, transparent 70%); /* Light Blue accent */
     z-index: 1;
 }
 
@@ -446,7 +460,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     width: 100%;
     height: 5px;
-    background: linear-gradient(90deg, var(--mongodb-green), var(--mongodb-green-light)); /* Blend of blue and green */
+    background: linear-gradient(90deg, var(--mongodb-green), var(--mongodb-green-light)); /* Will be light blue gradient */
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.5s ease;
@@ -492,7 +506,7 @@ h1, h2, h3, h4, h5, h6 {
 .feature ul li::before {
     content: "\2713"; /* Checkmark */
     margin-right: 10px;
-    color: var(--mongodb-green);
+    color: var(--mongodb-green); /* Will become light blue */
     font-weight: bold;
 }
 
@@ -506,13 +520,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .feature-expanded h3 {
-    color: var(--mongodb-green); /* Different color for emphasis */
+    color: var(--mongodb-green-dark); /* Different color for emphasis - darker light blue */
 }
 
 .feature-expanded ul li::before {
     content: "\25CB"; /* Open circle - To-do */
     margin-right: 10px;
-    color: var(--mongodb-green);
+    color: var(--mongodb-green-dark); /* Darker light blue */
     font-weight: bold;
 }
 
@@ -532,7 +546,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 500px;
     height: 500px;
     border-radius: 50%;
-    background: radial-gradient(circle at center, rgba(0, 128, 128, 0.05) 0%, transparent 70%); /* Teal accent */
+    background: radial-gradient(circle at center, rgba(173, 216, 230, 0.05) 0%, transparent 70%); /* Light Blue accent */
 }
 
 .team-members {
@@ -571,7 +585,7 @@ h1, h2, h3, h4, h5, h6 {
 .team-member:hover .profile-pic {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    border-color: rgba(0, 128, 128, 0.7); /* Teal accent */
+    border-color: rgba(173, 216, 230, 0.7); /* Light Blue accent */
 }
 
 .profile-pic img {
@@ -618,7 +632,7 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateX(-50%);
     width: 40px;
     height: 2px;
-    background: var(--mongodb-green); /* Was --apple-green, now Teal */
+    background: var(--mongodb-green); /* Will become light blue */
     border-radius: 2px;
     transition: width 0.3s ease;
 }
@@ -629,8 +643,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* CTA Section */
 .cta {
-    background: linear-gradient(135deg, var(--mongodb-gradient-start) 0%, var(--mongodb-gradient-end) 100%);
-    color: #FFFFFF; /* Changed from var(--apple-white) */
+    background: linear-gradient(135deg, var(--mongodb-gradient-start) 0%, var(--mongodb-gradient-end) 100%); /* Will be light blue gradient */
+    color: var(--text-on-dark-blue); /* Ensuring contrast */
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -661,7 +675,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .cta .section-text {
-    color: #FFFFFF; /* Changed from var(--apple-white) */
+    color: var(--text-on-dark-blue); /* Ensuring contrast */
     opacity: 0.9;
     margin: 0 auto 50px;
     font-size: 24px;
@@ -672,8 +686,8 @@ h1, h2, h3, h4, h5, h6 {
 .cta-button {
     display: inline-block;
     padding: 18px 40px;
-    background: var(--mongodb-green);
-    color: #FFFFFF; /* Changed from var(--apple-white) */
+    background: var(--brand-light-blue); /* Main light blue */
+    color: var(--text-on-light-blue); /* Text on light blue */
     text-decoration: none;
     font-size: 20px;
     font-weight: 600;
@@ -682,7 +696,7 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     overflow: hidden;
     z-index: 1;
-    box-shadow: 0 10px 30px rgba(0, 128, 128, 0.3); /* Teal accent shadow */
+    box-shadow: 0 10px 30px rgba(173, 216, 230, 0.3); /* Light blue shadow */
 }
 
 .cta-button::after {
@@ -699,9 +713,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .cta-button:hover {
-    background-color: #E57348; /* Darker Coral - Changed from #2b82d4 */
+    background-color: var(--brand-light-blue-dark); /* Darker light blue for hover */
+    color: var(--text-on-dark-blue);
     transform: scale(1.05);
-    box-shadow: 0 15px 40px rgba(255, 127, 80, 0.4); /* Adjusted shadow to coral */
+    box-shadow: 0 15px 40px rgba(135, 206, 235, 0.4); /* Darker light blue shadow */
 }
 
 .cta-button:hover::after {
@@ -779,6 +794,72 @@ footer p {
 .fade-in.appear {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Scroll-triggered Animations */
+/* General container for elements to be animated on scroll */
+.animate-on-scroll {
+    opacity: 0;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+/* For section titles specifically */
+.section-title.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px); /* Start slightly lower */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.section-title.animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.section-title.animate-on-scroll::after {
+    transform: scaleX(0); /* Start with underline scaled to 0 */
+    transform-origin: left; /* Animate from left to right */
+    transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1) 0.2s; /* Delayed start for after element */
+}
+.section-title.animate-on-scroll.visible::after {
+    transform: scaleX(1); /* Animate to full width */
+}
+
+
+.animate-on-scroll.fade-in {
+    /* Base opacity 0 from .animate-on-scroll */
+}
+.animate-on-scroll.fade-in.visible {
+    opacity: 1;
+}
+
+.animate-on-scroll.zoom-in img {
+    transform: scale(0.95); /* Start slightly smaller */
+    transition: transform 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.animate-on-scroll.zoom-in.visible img {
+    opacity: 1; /* Ensure it's visible if combined with fade-in or just for zoom */
+    transform: scale(1);
+}
+
+.animate-on-scroll.slide-up { /* Generic slide up, can be used by various elements */
+    transform: translateY(40px); /* Start slightly lower */
+}
+.animate-on-scroll.slide-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.animate-on-scroll.slide-left img { /* For images sliding from right */
+    transform: translateX(50px);
+}
+.animate-on-scroll.slide-left.visible img {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.animate-on-scroll.slide-right img { /* For images sliding from left */
+    transform: translateX(-50px);
+}
+.animate-on-scroll.slide-right.visible img {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 /* Media Queries */
@@ -861,7 +942,7 @@ footer p {
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background: var(--mongodb-green); /* Was --apple-green, now Teal */
+    background: var(--mongodb-green); /* Will become light blue */
     border-radius: 3px;
 }
 
@@ -884,8 +965,8 @@ footer p {
 }
 
 .chat-header-chat {
-    background-color: var(--mongodb-green); /* Use existing blue */
-    color: #FFFFFF; /* Changed from var(--apple-white) */
+    background-color: var(--mongodb-green); /* Will become light blue */
+    color: var(--text-on-light-blue); /* Ensuring contrast */
     padding: 12px 20px;
     font-weight: 500;
     text-align: center;
@@ -931,8 +1012,8 @@ footer p {
 
 .user-message-chat {
     align-self: flex-end;
-    background-color: var(--mongodb-green); /* User messages in main blue */
-    color: white;
+    background-color: var(--mongodb-green); /* User messages in light blue */
+    color: var(--text-on-light-blue); /* Ensuring contrast */
     border-bottom-right-radius: 5px;
 }
 
@@ -956,16 +1037,16 @@ footer p {
 }
 
 .chat-input-chat input:focus {
-    border-color: var(--mongodb-green);
-    box-shadow: 0 0 0 2px rgba(255, 127, 80, 0.2); /* Coral accent shadow */
+    border-color: var(--mongodb-green); /* Will become light blue */
+    box-shadow: 0 0 0 2px rgba(173, 216, 230, 0.2); /* Light blue shadow */
 }
 
 .chat-input-chat button {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: var(--mongodb-green); /* Send button in accent green */
-    color: white;
+    background-color: var(--mongodb-green); /* Send button in light blue */
+    color: var(--text-on-light-blue); /* Ensuring contrast */
     border: none;
     display: flex;
     align-items: center;
@@ -974,7 +1055,8 @@ footer p {
     transition: background-color 0.2s;
 }
 .chat-input-chat button:hover {
-    background-color: var(--mongodb-green-dark); /* Darker Teal - Changed from #2a9d47 */
+    background-color: var(--mongodb-green-dark); /* Darker light blue */
+    color: var(--text-on-dark-blue);
 }
 
 /* Responsive adjustments for chat */
@@ -1015,7 +1097,7 @@ footer p {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(255, 127, 80, 0.03) 0%, rgba(0, 128, 128, 0.03) 100%); /* Coral and Teal */
+    background: linear-gradient(135deg, rgba(173, 216, 230, 0.03) 0%, rgba(135, 206, 235, 0.03) 100%); /* Light Blue gradient */
     opacity: 0.5; /* Adjust opacity as needed */
     z-index: 0;
 }
@@ -1143,11 +1225,11 @@ footer p {
 }
 
 .how-it-works-column h3 .highlight-green {
-    color: var(--mongodb-green-light); /* Using new light green */
+    color: var(--mongodb-green-light); /* Using medium light blue */
 }
 
 .how-it-works-column h3 .highlight-blue {
-    color: var(--brand-blue); /* Using Coral, was var(--mongodb-green) */
+    color: var(--brand-light-blue); /* Using main light blue */
 }
 
 .how-it-works-column p {
@@ -1221,12 +1303,12 @@ footer p {
 }
 
 .step-card:nth-child(odd) h4 {
-    color: var(--mongodb-green);
+    color: var(--mongodb-green); /* Main light blue */
 }
 
 .step-card:nth-child(even) h4 {
     /* color: var(--mongodb-green-dark); */ /* Was darker green */
-    color: var(--brand-blue); /* Now uses blue */
+    color: var(--brand-light-blue-dark); /* Now uses darker light blue */
 }
 
 .step-card p {
