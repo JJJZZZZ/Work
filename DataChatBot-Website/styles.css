@@ -1,21 +1,22 @@
 /* Apple Style CSS */
 :root {
-    --brand-light-blue: #ADD8E6; /* Light Blue */
-    --brand-light-blue-dark: #87CEEB; /* Sky Blue */
-    --brand-light-blue-medium: #B0E0E6; /* Powder Blue */
-    --brand-light-blue-light: #F0F8FF; /* Alice Blue */
+    /* Light yellow palette */
+    --brand-light-blue: #FFF9C4; /* Light Yellow */
+    --brand-light-blue-dark: #FFE082; /* Soft Gold */
+    --brand-light-blue-medium: #FFECB3; /* Pale Yellow */
+    --brand-light-blue-light: #FFFFF0; /* Ivory */
 
     --apple-white: #FFFFFF; /* Changed from Light Red to White */
     --apple-black: #333333; /* Dark Gray - slightly adjusted for modern feel */
     --apple-gray: #666666; /* Medium Gray - slightly adjusted for modern feel */
 
-    /* Primary colors replaced with light blue theme */
+    /* Primary colors replaced with light yellow theme */
     --mongodb-green: var(--brand-light-blue); /* Was #008080 (Teal) */
     --mongodb-green-light: var(--brand-light-blue-medium); /* Was #40A0A0 (Lighter Teal) */
     --mongodb-green-dark: var(--brand-light-blue-dark); /* Was #006060 (Darker Teal) */
     --brand-blue: var(--brand-light-blue); /* Was #FF7F50 (Coral) */
 
-    /* Gradients adjusted to light blue theme */
+    /* Gradients adjusted to light yellow theme */
     --mongodb-gradient-start: var(--brand-light-blue-light); /* Lighter gradient start */
     --mongodb-gradient-end: var(--brand-light-blue);   /* Was #008080 */
 
@@ -23,7 +24,7 @@
     --apple-section-gray: #F0F0F0; /* Changed from Light Red to Neutral Light Gray */
 
     /* Text colors - ensure contrast */
-    --text-on-light-blue: #000000; /* Black text on light blue backgrounds for readability */
+    --text-on-light-blue: #000000; /* Black text on light yellow backgrounds for readability */
     --text-on-dark-blue: #FFFFFF; /* White text on darker blue backgrounds */
 }
 
@@ -82,7 +83,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     width: 80px;
     height: 3px;
-    background: var(--mongodb-green); /* Will become light blue */
+    background: var(--mongodb-green); /* Will become light yellow */
     border-radius: 3px;
 }
 
@@ -150,7 +151,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    background: radial-gradient(circle at center, rgba(173, 216, 230, 0.1) 0%, transparent 70%); /* Subtle light blue */
+    background: radial-gradient(circle at center, rgba(255, 243, 205, 0.2) 0%, transparent 70%); /* Subtle light yellow */
     z-index: 1;
     animation: float 15s infinite ease-in-out;
 }
@@ -381,7 +382,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Ensure highlight-green is defined if not already, or adjust as needed */
 .highlight-green {
-    color: var(--mongodb-green); /* Will become light blue */
+    color: var(--mongodb-green); /* Will become light yellow */
     font-weight: 600; /* Or adjust as preferred */
 }
 
@@ -422,7 +423,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 500px;
     height: 500px;
     border-radius: 50%;
-    background: radial-gradient(circle at center, rgba(173, 216, 230, 0.05) 0%, transparent 70%); /* Light Blue accent */
+    background: radial-gradient(circle at center, rgba(255, 243, 205, 0.05) 0%, transparent 70%); /* Light Yellow accent */
     z-index: 1;
 }
 
@@ -463,7 +464,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     width: 100%;
     height: 5px;
-    background: linear-gradient(90deg, var(--mongodb-green), var(--mongodb-green-light)); /* Will be light blue gradient */
+    background: linear-gradient(90deg, var(--mongodb-green), var(--mongodb-green-light)); /* Will be light yellow gradient */
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.5s ease;
@@ -509,7 +510,7 @@ h1, h2, h3, h4, h5, h6 {
 .feature ul li::before {
     content: "\2713"; /* Checkmark */
     margin-right: 10px;
-    color: var(--mongodb-green); /* Will become light blue */
+    color: var(--mongodb-green); /* Will become light yellow */
     font-weight: bold;
 }
 
@@ -523,13 +524,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .feature-expanded h3 {
-    color: var(--mongodb-green-dark); /* Different color for emphasis - darker light blue */
+    color: var(--mongodb-green-dark); /* Different color for emphasis - darker light yellow */
 }
 
 .feature-expanded ul li::before {
     content: "\25CB"; /* Open circle - To-do */
     margin-right: 10px;
-    color: var(--mongodb-green-dark); /* Darker light blue */
+    color: var(--mongodb-green-dark); /* Darker light yellow */
     font-weight: bold;
 }
 
@@ -549,7 +550,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 500px;
     height: 500px;
     border-radius: 50%;
-    background: radial-gradient(circle at center, rgba(173, 216, 230, 0.05) 0%, transparent 70%); /* Light Blue accent */
+    background: radial-gradient(circle at center, rgba(255, 243, 205, 0.05) 0%, transparent 70%); /* Light Yellow accent */
 }
 
 .team-members {
@@ -588,7 +589,7 @@ h1, h2, h3, h4, h5, h6 {
 .team-member:hover .profile-pic {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    border-color: rgba(173, 216, 230, 0.7); /* Light Blue accent */
+    border-color: rgba(255, 243, 205, 0.7); /* Light Yellow accent */
 }
 
 .profile-pic img {
@@ -635,7 +636,7 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateX(-50%);
     width: 40px;
     height: 2px;
-    background: var(--mongodb-green); /* Will become light blue */
+    background: var(--mongodb-green); /* Will become light yellow */
     border-radius: 2px;
     transition: width 0.3s ease;
 }
@@ -646,7 +647,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* CTA Section */
 .cta {
-    background: linear-gradient(135deg, var(--mongodb-gradient-start) 0%, var(--mongodb-gradient-end) 100%); /* Light blue gradient */
+    background: linear-gradient(135deg, var(--mongodb-gradient-start) 0%, var(--mongodb-gradient-end) 100%); /* Light yellow gradient */
     color: var(--text-on-dark-blue); /* Ensuring contrast */
     text-align: center;
     position: relative;
@@ -691,8 +692,8 @@ h1, h2, h3, h4, h5, h6 {
 .cta-button {
     display: inline-block;
     padding: 18px 40px;
-    background: var(--brand-light-blue); /* Main light blue */
-    color: var(--text-on-light-blue); /* Text on light blue */
+    background: var(--brand-light-blue); /* Main light yellow */
+    color: var(--text-on-light-blue); /* Text on light yellow */
     text-decoration: none;
     font-size: 20px;
     font-weight: 600;
@@ -701,7 +702,7 @@ h1, h2, h3, h4, h5, h6 {
     position: relative;
     overflow: hidden;
     z-index: 1;
-    box-shadow: 0 10px 30px rgba(173, 216, 230, 0.3); /* Light blue shadow */
+    box-shadow: 0 10px 30px rgba(255, 224, 130, 0.3); /* Light yellow shadow */
 }
 
 .cta-button::after {
@@ -718,10 +719,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .cta-button:hover {
-    background-color: var(--brand-light-blue-dark); /* Darker light blue for hover */
+    background-color: var(--brand-light-blue-dark); /* Darker light yellow for hover */
     color: var(--text-on-dark-blue);
     transform: scale(1.05);
-    box-shadow: 0 15px 40px rgba(135, 206, 235, 0.4); /* Darker light blue shadow */
+    box-shadow: 0 15px 40px rgba(255, 224, 130, 0.4); /* Darker light yellow shadow */
 }
 
 .cta-button:hover::after {
@@ -953,7 +954,7 @@ footer p {
     transform: translateX(-50%);
     width: 60px;
     height: 3px;
-    background: var(--mongodb-green); /* Will become light blue */
+    background: var(--mongodb-green); /* Will become light yellow */
     border-radius: 3px;
 }
 
@@ -976,7 +977,7 @@ footer p {
 }
 
 .chat-header-chat {
-    background-color: var(--mongodb-green); /* Will become light blue */
+    background-color: var(--mongodb-green); /* Will become light yellow */
     color: var(--text-on-light-blue); /* Ensuring contrast */
     padding: 12px 20px;
     font-weight: 500;
@@ -1023,7 +1024,7 @@ footer p {
 
 .user-message-chat {
     align-self: flex-end;
-    background-color: var(--mongodb-green); /* User messages in light blue */
+    background-color: var(--mongodb-green); /* User messages in light yellow */
     color: var(--text-on-light-blue); /* Ensuring contrast */
     border-bottom-right-radius: 5px;
 }
@@ -1048,15 +1049,15 @@ footer p {
 }
 
 .chat-input-chat input:focus {
-    border-color: var(--mongodb-green); /* Will become light blue */
-    box-shadow: 0 0 0 2px rgba(173, 216, 230, 0.2); /* Light blue shadow */
+    border-color: var(--mongodb-green); /* Will become light yellow */
+    box-shadow: 0 0 0 2px rgba(255, 243, 205, 0.2); /* Light yellow shadow */
 }
 
 .chat-input-chat button {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: var(--mongodb-green); /* Send button in light blue */
+    background-color: var(--mongodb-green); /* Send button in light yellow */
     color: var(--text-on-light-blue); /* Ensuring contrast */
     border: none;
     display: flex;
@@ -1066,7 +1067,7 @@ footer p {
     transition: background-color 0.2s;
 }
 .chat-input-chat button:hover {
-    background-color: var(--mongodb-green-dark); /* Darker light blue */
+    background-color: var(--mongodb-green-dark); /* Darker light yellow */
     color: var(--text-on-dark-blue);
 }
 
@@ -1108,7 +1109,7 @@ footer p {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, rgba(173, 216, 230, 0.03) 0%, rgba(135, 206, 235, 0.03) 100%); /* Light Blue gradient */
+    background: linear-gradient(135deg, rgba(255, 243, 205, 0.03) 0%, rgba(255, 224, 130, 0.03) 100%); /* Light Yellow gradient */
     opacity: 0.5; /* Adjust opacity as needed */
     z-index: 0;
 }
@@ -1236,11 +1237,11 @@ footer p {
 }
 
 .how-it-works-column h3 .highlight-green {
-    color: var(--mongodb-green-light); /* Using medium light blue */
+    color: var(--mongodb-green-light); /* Using medium light yellow */
 }
 
 .how-it-works-column h3 .highlight-blue {
-    color: var(--brand-light-blue); /* Using main light blue */
+    color: var(--brand-light-blue); /* Using main light yellow */
 }
 
 .how-it-works-column p {
@@ -1314,12 +1315,12 @@ footer p {
 }
 
 .step-card:nth-child(odd) h4 {
-    color: var(--mongodb-green); /* Main light blue */
+    color: var(--mongodb-green); /* Main light yellow */
 }
 
 .step-card:nth-child(even) h4 {
     /* color: var(--mongodb-green-dark); */ /* Was darker green */
-    color: var(--brand-light-blue-dark); /* Now uses darker light blue */
+    color: var(--brand-light-blue-dark); /* Now uses darker light yellow */
 }
 
 .step-card p {
