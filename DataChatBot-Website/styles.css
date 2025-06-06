@@ -1,0 +1,1252 @@
+/* Apple Style CSS */
+:root {
+    --apple-white: #ffffff;
+    --apple-black: #1d1d1f;
+    --apple-gray: #86868b;
+    --mongodb-green: #4DB33D; /* MongoDB primary green */
+    --mongodb-green-light: #6ACC5A; /* Lighter MongoDB green accent */
+    --mongodb-green-dark: #3FA037; /* Darker MongoDB green for gradients/accents */
+    --brand-blue: #0071e3; /* Adding a blue for alternating colors */
+    --mongodb-gradient-start: #003E29; /* Dark green for gradient */
+    --mongodb-gradient-end: #00684A;   /* Medium green for gradient */
+    --apple-dark-bg: #000000;
+    --apple-section-gray: #f5f5f7;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    color: var(--apple-black);
+    line-height: 1.5;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+.wrapper {
+    overflow: hidden;
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+}
+
+.title-large {
+    font-size: 80px;
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin-bottom: 0.2em;
+}
+
+.subtitle {
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 1em;
+}
+
+.section-title {
+    font-size: 48px;
+    line-height: 1.1;
+    font-weight: 600;
+    margin-bottom: 0.7em;
+    letter-spacing: -0.015em;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: "";
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 80px;
+    height: 3px;
+    background: var(--mongodb-green);
+    border-radius: 3px;
+}
+
+.section-text {
+    font-size: 22px;
+    line-height: 1.6;
+    color: var(--apple-gray);
+    margin: 1.5em auto 2em;
+    max-width: 800px;
+    font-weight: 400;
+}
+
+/* Layout */
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 120px 40px;
+    position: relative;
+}
+
+.responsive-img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: 8px;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    background: linear-gradient(135deg, var(--mongodb-gradient-start) 0%, var(--mongodb-gradient-end) 100%);
+    color: var(--apple-white);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    z-index: 1;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-0.895 2-2s-0.895-2-2-2-2 0.895-2 2 0.895 2 2 2zM60 91c1.105 0 2-0.895 2-2s-0.895-2-2-2-2 0.895-2 2 0.895 2 2 2zM35 41c1.105 0 2-0.895 2-2s-0.895-2-2-2-2 0.895-2 2 0.895 2 2 2zM12 60c1.105 0 2-0.895 2-2s-0.895-2-2-2-2 0.895-2 2 0.895 2 2 2z' fill='%23ffffff' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.floating-element {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    z-index: 1;
+    animation: float 15s infinite ease-in-out;
+}
+
+.floating-element:nth-child(1) {
+    top: 10%;
+    right: 10%;
+    width: 400px;
+    height: 400px;
+    animation-delay: 0s;
+}
+
+.floating-element:nth-child(2) {
+    bottom: 15%;
+    left: 10%;
+    width: 300px;
+    height: 300px;
+    animation-delay: -5s;
+}
+
+.floating-element:nth-child(3) {
+    top: 40%;
+    left: 20%;
+    width: 200px;
+    height: 200px;
+    animation-delay: -10s;
+}
+
+@keyframes float {
+    0% {
+        transform: translate(0, 0);
+    }
+    50% {
+        transform: translate(30px, -30px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+
+.nav {
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 10;
+    backdrop-filter: blur(5px);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+}
+
+.leaf-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.hero-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    position: relative;
+    z-index: 10;
+}
+
+.hero .title-large {
+    font-size: 9vw;
+    font-weight: 700;
+    background: linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, 0.7) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 0.1em;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.1);
+}
+
+.hero .subtitle {
+    font-size: 2.2vw;
+    font-weight: 300;
+    opacity: 0.9;
+    max-width: 90%;
+    margin: 0 auto 2em;
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.mouse {
+    width: 30px;
+    height: 50px;
+    border: 2px solid var(--apple-white);
+    border-radius: 20px;
+    position: relative;
+    margin: 0 auto 10px;
+}
+
+.mouse::before {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: var(--apple-white);
+    border-radius: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 10px;
+    animation: scroll 2s infinite;
+}
+
+@keyframes scroll {
+    0% {
+        opacity: 1;
+        top: 10px;
+    }
+    100% {
+        opacity: 0;
+        top: 30px;
+    }
+}
+
+/* Problem Section */
+.problem {
+    background-color: var(--apple-section-gray);
+    position: relative;
+    overflow: hidden;
+}
+
+.problem::before {
+    content: "";
+    position: absolute;
+    top: -100px;
+    left: 0;
+    width: 100%;
+    height: 200px;
+    background: linear-gradient(to bottom, transparent, var(--apple-section-gray));
+    z-index: 1;
+}
+
+.problem-content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: start;
+    margin-top: 40px;
+}
+
+.problem .section-text {
+    margin: 0;
+}
+
+.problem-text-content .section-text {
+    font-size: 18px;
+    line-height: 1.7;
+    color: #5a6570;
+    margin-bottom: 1.25em;
+    max-width: 100%;
+    font-weight: 400;
+}
+
+.problem-text-content .section-text:last-child {
+    margin-bottom: 0;
+}
+
+.problem .section-title {
+    margin-bottom: 1em;
+}
+
+.problem-image {
+    max-width: 100%;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out;
+}
+
+.problem-image:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+/* Solution Section */
+.solution {
+    background-color: var(--apple-white);
+    position: relative;
+}
+
+.solution-content-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 50px; /* Consistent gap with Problem section */
+    align-items: start; /* Align items to the top */
+    margin-top: 40px; /* Space below the section title */
+}
+
+.solution-text-content .section-text {
+    font-size: 18px; /* Consistent with Problem section text */
+    line-height: 1.7; /* Consistent line height */
+    color: #5a6570; /* Consistent text color */
+    margin-bottom: 1.25em; /* Spacing between paragraphs */
+    max-width: 100%; /* Ensure text fills its column */
+}
+
+.solution-text-content .section-text:last-child {
+    margin-bottom: 0;
+}
+
+.solution .section-title {
+    margin-bottom: 1em; /* Ensure adequate space below the main section title */
+}
+
+/* Ensure highlight-green is defined if not already, or adjust as needed */
+.highlight-green {
+    color: var(--mongodb-green);
+    font-weight: 600; /* Or adjust as preferred */
+}
+
+/* For the new image */
+.solution-image-container {
+    max-width: 800px; /* Adjust as needed */
+    margin: 60px auto; /* Center it and provide spacing */
+    position: relative;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+    border-radius: 16px; /* Consistent rounded corners */
+    overflow: hidden; /* To ensure image respects border-radius */
+}
+
+.solution-image-new {
+    display: block; /* Remove extra space below image */
+    width: 100%; /* Make image responsive within container */
+    height: auto;
+    border-radius: 16px; /* Match container radius if image itself has no radius */
+    transition: transform 0.4s ease-in-out;
+}
+
+.solution-image-container:hover .solution-image-new {
+    transform: scale(1.03); /* Subtle hover effect */
+}
+
+/* Features Section */
+.features {
+    background-color: var(--apple-section-gray);
+    position: relative;
+    overflow: hidden;
+}
+
+.features::after {
+    content: "";
+    position: absolute;
+    right: -5%;
+    bottom: -5%;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(0, 113, 227, 0.05) 0%, transparent 70%);
+    z-index: 1;
+}
+
+.features-grid {
+    display: grid;
+    /* Default to auto-fit for general cases */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px; /* Adjusted gap */
+    margin-top: 80px;
+    position: relative;
+    z-index: 2;
+}
+
+/* Specific adjustments for a grid that is intended to have 3 items, 
+   allowing the expanded one to take more space if possible or just fit naturally. */
+.features-grid.three-items-grid {
+    /* On larger screens, we might want the expanded item to span more if it's designed that way,
+       or simply let them be equal. For now, let auto-fit handle it. 
+       If specific spanning is needed for .feature-expanded, it can be added here for specific breakpoints. */
+}
+
+.feature {
+    background-color: var(--apple-white);
+    padding: 30px; /* Adjusted padding */
+    border-radius: 20px; /* Adjusted radius */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+    /* backdrop-filter: blur(10px); /* Consider if this adds to the look or not */
+    /* border: 1px solid rgba(255, 255, 255, 0.1); */
+}
+
+.feature::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--mongodb-green), var(--mongodb-green-light)); /* Blend of blue and green */
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+}
+
+.feature:hover {
+    transform: translateY(-8px) scale(1.01); /* Slightly less pronounced hover */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.feature:hover::before {
+    transform: scaleX(1);
+}
+
+.feature h3 {
+    font-size: 22px; /* Adjusted size */
+    margin-bottom: 18px; /* Adjusted margin */
+    color: var(--apple-black);
+}
+
+.feature p {
+    color: var(--apple-gray);
+    font-size: 16px; /* Adjusted size */
+    line-height: 1.65;
+    margin-bottom: 15px; /* Add margin if p is followed by ul */
+}
+
+.feature ul {
+    list-style: none; /* Remove default bullets */
+    padding-left: 0; /* Remove default padding */
+    margin-top: 10px; /* Space above the list if it follows a p or h3 directly */
+}
+
+.feature ul li {
+    color: var(--apple-gray);
+    font-size: 16px;
+    line-height: 1.65;
+    margin-bottom: 10px; /* Space between list items */
+    position: relative;
+    padding-left: 25px; /* Space for custom bullet */
+}
+
+.feature ul li::before {
+    content: "\2713"; /* Checkmark */
+    margin-right: 10px;
+    color: var(--mongodb-green);
+    font-weight: bold;
+}
+
+/* Styling for the expanded feature, if it needs to be visually distinct or larger */
+.feature-expanded {
+    /* Example: Make it span more columns on wider screens if the grid is set up for it */
+    /* @media (min-width: 992px) { */
+    /*    grid-column: span 2; /* This would require features-grid to be set to allow this */
+    /* } */
+    background-color: #fdfdfd; /* Slightly different background if needed */
+}
+
+.feature-expanded h3 {
+    color: var(--mongodb-green); /* Different color for emphasis */
+}
+
+.feature-expanded ul li::before {
+    content: "\25CB"; /* Open circle - To-do */
+    margin-right: 10px;
+    color: var(--mongodb-green);
+    font-weight: bold;
+}
+
+/* Team Section */
+.team {
+    background-color: var(--apple-white);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.team::before {
+    content: "";
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, rgba(52, 199, 89, 0.05) 0%, transparent 70%);
+}
+
+.team-members {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 40px;
+    margin-top: 80px;
+    position: relative;
+    z-index: 2;
+}
+
+.team-member {
+    padding: 30px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 16px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 15px;
+    border: 3px solid #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s ease;
+    transform: translateY(0);
+}
+
+.team-member:hover .profile-pic {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    border-color: rgba(52, 199, 89, 0.7);
+}
+
+.profile-pic img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    transition: transform 0.5s ease;
+}
+
+.team-member:hover .profile-pic img {
+    transform: scale(1.05);
+}
+
+.team-member::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    border-radius: 16px;
+    z-index: -1;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.team-member h3 {
+    font-size: 22px;
+    margin-top: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+.team-member h3::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 2px;
+    background: var(--apple-green);
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+.team-member:hover h3::after {
+    width: 60px;
+}
+
+/* CTA Section */
+.cta {
+    background: linear-gradient(135deg, var(--mongodb-gradient-start) 0%, var(--mongodb-gradient-end) 100%);
+    color: var(--apple-white);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 70% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+}
+
+.cta .section-container {
+    position: relative;
+    z-index: 2;
+}
+
+.cta .section-title {
+    font-size: 56px;
+    margin-bottom: 30px;
+    background: linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, 0.8) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.cta .section-text {
+    color: var(--apple-white);
+    opacity: 0.9;
+    margin: 0 auto 50px;
+    font-size: 24px;
+    font-weight: 300;
+    max-width: 600px;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 18px 40px;
+    background: var(--mongodb-green);
+    color: var(--apple-white);
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 0 10px 30px rgba(0, 113, 227, 0.3);
+}
+
+.cta-button::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.8s ease;
+    z-index: -1;
+}
+
+.cta-button:hover {
+    background-color: #2b82d4;
+    transform: scale(1.05);
+    box-shadow: 0 15px 40px rgba(0, 113, 227, 0.4);
+}
+
+.cta-button:hover::after {
+    transform: translateX(100%);
+}
+
+.shine {
+    position: relative;
+    overflow: hidden;
+}
+
+.shine::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(
+        to bottom right, 
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0) 40%,
+        rgba(255, 255, 255, 0.6) 50%,
+        rgba(255, 255, 255, 0) 60%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    transform: rotate(45deg);
+    animation: shine-animation 1.5s forwards;
+}
+
+@keyframes shine-animation {
+    0% {
+        transform: rotate(45deg) translateY(-100%) translateX(-100%);
+    }
+    100% {
+        transform: rotate(45deg) translateY(100%) translateX(100%);
+    }
+}
+
+.cta-date {
+    margin-top: 80px;
+    font-size: 20px;
+    opacity: 0.8;
+    letter-spacing: 1px;
+}
+
+/* Footer */
+footer {
+    background-color: var(--apple-section-gray);
+    padding: 40px 0;
+    text-align: center;
+}
+
+footer .section-container {
+    padding: 20px 40px;
+}
+
+footer .logo {
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+footer p {
+    color: var(--apple-gray);
+    font-size: 14px;
+}
+
+/* Animation Classes */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.fade-in.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .title-large {
+        font-size: 48px;
+    }
+    
+    .subtitle {
+        font-size: 24px;
+    }
+    
+    .section-title {
+        font-size: 36px;
+    }
+    
+    .section-text {
+        font-size: 18px;
+    }
+    
+    .section-container {
+        padding: 80px 20px;
+    }
+    .problem-content-wrapper {
+        grid-template-columns: 1fr;
+    }
+    .problem .section-text {
+        text-align: left;
+    }
+    .problem-image {
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title-large {
+        font-size: 40px;
+    }
+    
+    .section-title {
+        font-size: 28px;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .team-members {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .live-demo-title {
+        font-size: 24px;
+    }
+    .chatbot-demo-chat {
+        height: 400px;
+    }
+}
+
+/* Live Demo Chat Styles (Integrated into Solution Section) */
+.live-demo-section {
+    max-width: 720px;
+    margin: 60px auto 40px; /* Added top margin */
+    text-align: center;
+}
+
+.live-demo-title {
+    font-size: 32px; /* Slightly smaller than section title */
+    font-weight: 500;
+    color: var(--apple-black);
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+}
+
+.live-demo-title::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: var(--apple-green); /* Use existing green */
+    border-radius: 3px;
+}
+
+.demo-container-chat {
+    padding: 20px;
+    background-color: var(--apple-section-gray); /* Light gray container */
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.chatbot-demo-chat {
+    background-color: var(--apple-white); /* White background */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    height: 480px; /* Adjusted height */
+    color: var(--apple-black);
+}
+
+.chat-header-chat {
+    background-color: var(--mongodb-green); /* Use existing blue */
+    color: var(--apple-white);
+    padding: 12px 20px;
+    font-weight: 500;
+    text-align: center;
+    font-size: 18px;
+}
+
+.chat-messages-chat {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    background-color: #f9f9f9; /* Very light gray for message area */
+    overflow-y: auto;
+}
+
+.bot-message-chat, .user-message-chat {
+    max-width: 75%;
+    padding: 10px 15px;
+    border-radius: 18px;
+    font-size: 15px;
+    line-height: 1.45;
+    word-wrap: break-word;
+}
+
+.bot-message-chat {
+    align-self: flex-start;
+    background-color: #e5e5ea; /* Light gray for bot (Apple-like) */
+    color: var(--apple-black);
+    border-bottom-left-radius: 5px;
+}
+
+.bot-message-chat code {
+    display: block;
+    background-color: #dcdcdc;
+    padding: 8px;
+    border-radius: 4px;
+    margin-top: 5px;
+    font-family: 'SF Mono', Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
+    font-size: 0.9em;
+    overflow-x: auto;
+}
+
+.user-message-chat {
+    align-self: flex-end;
+    background-color: var(--mongodb-green); /* User messages in main blue */
+    color: white;
+    border-bottom-right-radius: 5px;
+}
+
+.chat-input-chat {
+    padding: 12px;
+    display: flex;
+    gap: 10px;
+    background-color: #eef0f1; /* Light background for input area */
+    border-top: 1px solid #d1d1d6; /* Subtle separator */
+}
+
+.chat-input-chat input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #c7c7cc;
+    border-radius: 20px;
+    background-color: var(--apple-white);
+    font-size: 15px;
+    outline: none;
+    color: var(--apple-black);
+}
+
+.chat-input-chat input:focus {
+    border-color: var(--mongodb-green);
+    box-shadow: 0 0 0 2px rgba(0, 113, 227, 0.2);
+}
+
+.chat-input-chat button {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--mongodb-green); /* Send button in accent green */
+    color: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.chat-input-chat button:hover {
+    background-color: #2a9d47; /* Darker green on hover */
+}
+
+/* Responsive adjustments for chat */
+@media (max-width: 768px) {
+    .live-demo-title {
+        font-size: 28px;
+    }
+    .chatbot-demo-chat {
+        height: 400px;
+    }
+}
+
+@media (max-width: 480px) {
+    .live-demo-title {
+        font-size: 24px;
+    }
+    .chat-input-chat input{
+        font-size: 14px;
+    }
+     .bot-message-chat, .user-message-chat {
+        font-size: 14px;
+    }
+}
+
+/* Live Demo External Link Section Styles */
+.live-demo-external {
+    background-color: var(--apple-section-gray); /* Or var(--apple-white) for contrast */
+    /* text-align: center; */ /* Remove default centering for the whole section */
+    position: relative;
+    overflow: hidden;
+}
+
+/* Optional: Add a subtle pattern or gradient if desired */
+.live-demo-external::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 113, 227, 0.03) 0%, rgba(52, 199, 89, 0.03) 100%);
+    opacity: 0.5; /* Adjust opacity as needed */
+    z-index: 0;
+}
+
+.live-demo-external .section-container {
+    position: relative; /* Ensure content is above pseudo-element */
+    z-index: 1;
+    text-align: left; /* Align title and other direct content to the left */
+}
+
+.live-demo-external .section-title {
+    color: var(--apple-black);
+}
+
+.live-demo-external .section-text {
+    color: var(--apple-gray);
+    margin-bottom: 40px; /* Space before the video container */
+    max-width: 800px; /* Constrain width for readability */
+    margin-left: 0; /* Override general auto margin for left alignment */
+    margin-right: 0; /* Override general auto margin, or can be 'auto' if only left is 0 */
+    text-align: left; /* Explicitly set text alignment for the content */
+}
+
+.video-container {
+    max-width: 960px; /* Max width of the video player */
+    margin: 0 auto; /* Center the container */
+    background-color: var(--apple-black); /* Dark background for the player for a cinematic feel */
+    border-radius: 16px; /* Consistent rounded corners */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15); /* Consistent shadow */
+    overflow: hidden; /* Ensures video corners are also rounded */
+    position: relative; /* For potential future overlays or aspect ratio control */
+}
+
+.video-container video {
+    display: block; /* Remove extra space below video */
+    width: 100%;
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 16px; /* Match container radius */
+}
+
+/* Remove styles for the old button if they are still present or too specific */
+.cta-center-container,
+.live-demo-button,
+.section-subtext {
+    /* display: none; */ /* Or remove these rules if they are no longer needed and were specific */
+    /* For now, I'll just comment out to avoid accidental removal if they were used elsewhere, 
+       but ideally these would be cleaned up if exclusively for the old button. */
+}
+
+/* Media query for button size on smaller screens - No longer needed for button */
+@media (max-width: 768px) {
+    .live-demo-button {
+        padding: 16px 35px;
+        font-size: 20px;
+    }
+    .live-demo-external .section-text {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .live-demo-button {
+        padding: 14px 30px;
+        font-size: 18px;
+        width: 90%; /* Make button wider on small screens */
+        justify-content: center; /* Center text and icon if stacked */
+    }
+    .live-demo-external .section-title {
+        font-size: 28px; /* Match other h2s on small screens */
+    }
+}
+
+/* How It Works Section Styles */
+.how-it-works {
+    /* background-color: var(--apple-section-gray); */ /* Was gray */
+    background-color: var(--apple-white); /* Changed to white for alternation */
+    position: relative;
+    overflow: hidden;
+}
+
+.how-it-works-columns {
+    display: grid;
+    /* Adjust grid template for potentially 4 columns, while still being responsive */
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* Slightly smaller minmax for 4 columns */
+    gap: 30px; /* Slightly reduced gap if 4 columns feel too tight */
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+/* Specific styling if you want to ensure 2x2 on medium screens for 4 columns */
+@media (min-width: 768px) and (max-width: 1023px) { /* Tablet-like sizes */
+    .how-it-works-columns.four-columns {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) { /* Desktop sizes */
+    .how-it-works-columns.four-columns {
+        grid-template-columns: repeat(4, 1fr); /* Explicitly 4 columns on larger screens */
+    }
+     .how-it-works-columns {
+        /* Default for 3 columns if not .four-columns */
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    }
+}
+
+.how-it-works-column {
+    padding: 25px;
+    background-color: var(--apple-section-gray); /* Subtle background for each column */
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.how-it-works-column:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+}
+
+.how-it-works-column h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--apple-black);
+}
+
+.how-it-works-column h3 .highlight-green {
+    color: var(--mongodb-green-light); /* Using new light green */
+}
+
+.how-it-works-column h3 .highlight-blue {
+    color: var(--mongodb-green); /* Using main MongoDB green */
+}
+
+.how-it-works-column p {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--apple-gray);
+}
+
+.conclusion-text {
+    margin-top: 30px;
+    font-style: italic;
+    font-size: 18px; /* Slightly smaller if desired */
+}
+
+/* Optional styles for RAG diagram placeholder */
+.rag-diagram-container {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.rag-diagram-container img {
+    max-width: 900px;
+    border-radius: 12px; /* Slightly larger radius */
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1); /* More defined shadow */
+    margin-bottom: 60px; /* Increased space below diagram */
+}
+
+.caption-text {
+    font-size: 14px;
+    color: var(--apple-gray);
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.how-it-works .section-text {
+    margin-bottom: 40px; /* Increased space after intro text */
+    max-width: 800px; /* Constrain width for readability */
+    font-size: 18px; /* Consistent with Problem/Solution section text */
+    line-height: 1.7; /* Consistent line height */
+    color: #5a6570; /* Consistent text color */
+    margin-left: 0; /* Ensure left alignment */
+    margin-right: 0; /* Ensure left alignment */
+}
+
+.how-it-works-breakdown {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px; /* Adjusted gap */
+    margin-top: 20px;
+}
+
+.step-card {
+    background-color: var(--apple-white); /* Changed background for contrast */
+    padding: 30px; /* Increased padding */
+    border-radius: 16px; /* More pronounced radius */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.07); /* Refined shadow */
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added transition */
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.1);
+}
+
+.step-card h4 {
+    font-size: 20px;
+    font-weight: 600;
+    /* color: var(--apple-blue); Default color, will be overridden by nth-child */
+    margin-bottom: 15px;
+}
+
+.step-card:nth-child(odd) h4 {
+    color: var(--mongodb-green);
+}
+
+.step-card:nth-child(even) h4 {
+    /* color: var(--mongodb-green-dark); */ /* Was darker green */
+    color: var(--brand-blue); /* Now uses blue */
+}
+
+.step-card p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--apple-gray);
+}
+
+/* Responsive adjustments for columns */
+@media (max-width: 768px) {
+    .how-it-works-columns {
+        gap: 25px;
+    }
+    .how-it-works-column h3 {
+        font-size: 20px;
+    }
+}
+
+/* Specific rule to center the accent line for the Team section title */
+.team .section-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+}
