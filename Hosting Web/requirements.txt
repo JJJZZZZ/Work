@@ -14,4 +14,4 @@ jinja2>=3.1.0
 # mongocausalml
 
 # Development dependencies
-python-dotenv>=1.0.0 
+python-dotenv>=1.0.0
