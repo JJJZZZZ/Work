@@ -16,7 +16,7 @@
     --brand-blue: var(--brand-light-blue); /* Was #FF7F50 (Coral) */
 
     /* Gradients adjusted to light blue theme */
-    --mongodb-gradient-start: var(--brand-light-blue-dark); /* Was #006060 */
+    --mongodb-gradient-start: var(--brand-light-blue-light); /* Lighter gradient start */
     --mongodb-gradient-end: var(--brand-light-blue);   /* Was #008080 */
 
     --apple-dark-bg: #000000;
@@ -39,6 +39,7 @@ body {
     line-height: 1.5;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
+    background-color: var(--brand-light-blue-light);
 }
 
 .wrapper {
@@ -113,12 +114,14 @@ h1, h2, h3, h4, h5, h6 {
 /* Hero Section */
 .hero {
     height: 100vh;
-    background: linear-gradient(135deg, var(--mongodb-gradient-start) 0%, var(--mongodb-gradient-end) 100%); /* Will be light blue gradient */
+    background: linear-gradient(135deg, var(--mongodb-gradient-start) 0%, var(--mongodb-gradient-end) 100%); /* Light blue gradient */
     color: var(--text-on-dark-blue); /* Ensuring contrast */
     display: flex;
     flex-direction: column;
     position: relative;
     overflow: hidden;
+    background-size: 200% 200%;
+    animation: gradientShift 15s ease infinite;
 }
 
 .hero::before {
@@ -643,11 +646,13 @@ h1, h2, h3, h4, h5, h6 {
 
 /* CTA Section */
 .cta {
-    background: linear-gradient(135deg, var(--mongodb-gradient-start) 0%, var(--mongodb-gradient-end) 100%); /* Will be light blue gradient */
+    background: linear-gradient(135deg, var(--mongodb-gradient-start) 0%, var(--mongodb-gradient-end) 100%); /* Light blue gradient */
     color: var(--text-on-dark-blue); /* Ensuring contrast */
     text-align: center;
     position: relative;
     overflow: hidden;
+    background-size: 200% 200%;
+    animation: gradientShift 15s ease infinite;
 }
 
 .cta::before {
@@ -754,6 +759,12 @@ h1, h2, h3, h4, h5, h6 {
     100% {
         transform: rotate(45deg) translateY(100%) translateX(100%);
     }
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .cta-date {
